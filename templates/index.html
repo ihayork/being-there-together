@@ -24,4 +24,11 @@
 <div>
     <h1>Welcome!</h1><br>
     <p>This site has been visited {{ count }} times.</p>
+    <p>Here's a message someone left for you:</p>
+    <p>{{ message }}</p>
+    <p>Why not leave a message for someone else below?</p>
+    <form method="POST">
+        <input name="message"><br>
+        <input type="submit">
+    </form>
 </div>
