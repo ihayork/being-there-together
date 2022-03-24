@@ -26,7 +26,7 @@ def index():
 def form():
     
     if(request.method == 'POST'):
-        message = request.form['url']
+        message = request.form['message']
         m = open("message.txt","a")
         m.write("\n" + message)
         m.close()
