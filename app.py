@@ -18,6 +18,8 @@ def index():
     f = open("count.txt", "w")
     f.write(str(count))
     f.close()
+    
+    errorMessage = "Please enter a message with more than 0 characters and no more than 120 characters."
 
     # Render HTML with count variable
     return render_template("index.html", message=messages[select], count=count)
@@ -27,9 +29,13 @@ def form():
     
     if(request.method == 'POST'):
         message = request.form['message']
-        m = open("message.txt","a")
-        m.write("\n" + message)
-        m.close()
+        if(len(message) > 120 or len(message) < 1):
+            errorMessage = "Please make sure you enter a message with more than 0 characters, and no longer than 120 characters.\nYour last message had: " + len(message) + " characters. Please adjust the content of your message."
+        else:
+            m = open("message.txt","a")
+            m.write("\n" + message)
+            m.close()
+            errorMessage = "Your message has been received!"
     
     m = open("message.txt","r")
     messages = m.readlines()
@@ -45,7 +51,21 @@ def form():
     f.close()
 
     # Render HTML with count variable
-    return render_template("index.html", message=messages[select], count=count)
+    return render_template("form.html", message=messages[select], count=count, errorMessage=errorMessage)
+
+@app.route("/messages")
+def messages():
+    
+    m = open("message.txt","r")
+    messages = m.readlines()
+    
+    output = "<hr>"
+    i = 0
+    while i < len(messages):
+        output = output + messages[i] + "\n<hr>"
+        i = i + 1
+    
+    return render_template("messages.html", output=output)
 
 if __name__ == "__main__":
     app.run()

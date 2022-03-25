@@ -12,23 +12,44 @@
     }
 
     h1 {
-        color: red;
         font-size: 40pt;
     }
 
     p {
+        font-size: 18pt;
+    }
+
+    #leftMessage {
+        text-align: center;
         font-size: 24pt;
+        margin-left: 15%
+        margin-right: 15%
+    }
+
+    #messageBox {
+        width: 50%;
+    }
+
+    #error {
+        font-size: 16pt;
+        color: red;
+    }
+
+    #count {
+        color: red;
     }
 </style>
 
 <div>
     <h1>Welcome!</h1><br>
-    <p>This site has been visited {{ count }} times.</p>
-    <p>Here's a message someone left for you:</p>
-    <p>{{ message }}</p>
+    <p>This site has been visited <span id="count">{{ count }}</span> times.</p>
+    <p>Here's a random message someone left for you:</p>
+    <p id="leftMessage">{{ message }}</p>
     <p>Why not leave a message for someone else below?</p>
     <form method="POST" action='/form'>
-        <input name="message"><br>
+        <input id="messageBox" name="message"><br>
         <input type="submit">
     </form>
+    <p id="error">{{ errorMessage }}</p>
+    <a href="/messages">Click here to see a list of all messages left so far!</a>
 </div>
