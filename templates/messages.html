@@ -30,6 +30,8 @@
 <div>
     <h1>Message log</h1><br>
     <p>Here's a list of all the messages left on this site recently:</p>
-    <p id="output">{{ output }}</p>
+    {% for para in output %}
+        <p id="output">{{ para }}</p>
+    {% endfor %}
     <a href="/index">Click here to return to the main page.</a>
 </div>

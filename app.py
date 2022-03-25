@@ -57,13 +57,7 @@ def form():
 def messages():
     
     m = open("message.txt","r")
-    messages = m.readlines()
-    
-    output = "<hr>"
-    i = 0
-    while i < len(messages):
-        output = output + messages[i] + "\n"
-        i = i + 1
+    output = m.readlines()
     
     return render_template("messages.html", output=output)
 
