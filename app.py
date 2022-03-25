@@ -22,7 +22,7 @@ def index():
     errorMessage = "Please enter a message with more than 0 characters and no more than 120 characters."
 
     # Render HTML with count variable
-    return render_template("index.html", message=messages[select], count=count)
+    return render_template("index.html", message=messages[select], count=count, errorMessage = errorMessage)
 
 @app.route("/form", methods=['GET', 'POST'])
 def form():
@@ -30,7 +30,7 @@ def form():
     if(request.method == 'POST'):
         message = request.form['message']
         if(len(message) > 120 or len(message) < 1):
-            errorMessage = "Please make sure you enter a message with more than 0 characters, and no longer than 120 characters.\nYour last message had: " + len(message) + " characters. Please adjust the content of your message."
+            errorMessage = "Please make sure you enter a message with more than 0 characters, and no longer than 120 characters. Your last message had: " + len(message) + " characters. Please adjust the content of your message."
         else:
             m = open("message.txt","a")
             m.write("\n" + message)
