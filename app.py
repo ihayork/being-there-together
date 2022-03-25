@@ -62,7 +62,7 @@ def messages():
     output = "<hr>"
     i = 0
     while i < len(messages):
-        output = output + messages[i] + "\n<hr>"
+        output = output + messages[i] + "\n"
         i = i + 1
     
     return render_template("messages.html", output=output)
