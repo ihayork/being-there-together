@@ -45,9 +45,7 @@ def form():
     select = random.randint(0, numMessage-1)
     
     f = open("count.txt", "r")
-    count = int(f.read()) + 1
-    f = open("count.txt", "w")
-    f.write(str(count))
+    count = int(f.read())
     f.close()
 
     # Render HTML with count variable
